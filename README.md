@@ -1,5 +1,5 @@
 # Projeto de Introdução a Computação Gráfica
-#Esse projeto terá como foco desenvolver um jogo 2d de plataforma desenvolvido com unity.
+Esse projeto terá como foco desenvolver um jogo 2d de plataforma desenvolvido com unity.
 # MECÂNICAS: 
 Ao longo da fase, o personagem principal tem como objetivo adquirir chaves para passar para as próximas etapas, mas, para atingir esse objetivo, terá que derrotar ou desviar de inimigos que surgirão pelo caminho. 
 # Sinopse: 
