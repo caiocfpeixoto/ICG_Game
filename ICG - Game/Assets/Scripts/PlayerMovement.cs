@@ -20,9 +20,9 @@ public class PlayerMovement : MonoBehaviour
 
         // FLIP DO PLAYER QUANDO MOVER ESQ/DIR
         if(horizontalInput > 0.01f)
-            transform.localScale = Vector3.one;
+            transform.localScale = new Vector3(2, 2, 2);
         else if(horizontalInput < -0.01f)
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-2, 2, 2);
 
         if(Input.GetKey(KeyCode.Space) && grounded)
             Jump();
