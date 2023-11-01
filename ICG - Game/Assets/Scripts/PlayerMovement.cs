@@ -3,12 +3,14 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [SerializeField] private float jumpPower;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
     private Rigidbody2D body;
     private Animator anim;
     private BoxCollider2D boxCollider;
     private float wallJumpCooldown;
+    private float horizontalInput;
 
     private void Awake()
     {
@@ -19,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
+        horizontalInput = Input.GetAxis("Horizontal");
 
         // FLIP DO PLAYER QUANDO MOVER ESQ/DIR
         if(horizontalInput > 0.01f)
@@ -33,11 +35,8 @@ public class PlayerMovement : MonoBehaviour
 
         // print(onWall());
         // Lógica do pulo na parede
-        if (wallJumpCooldown < 0.2f)
+        if (wallJumpCooldown > 0.2f)
         {
-            if(Input.GetKey(KeyCode.Space) && isGrounded())
-                Jump();
-
             body.velocity = new Vector2( horizontalInput * speed, body.velocity.y);
 
             if (onWall() && !isGrounded())
@@ -47,16 +46,36 @@ public class PlayerMovement : MonoBehaviour
             }
             else 
                 body.gravityScale = 2;
+
+            if(Input.GetKey(KeyCode.Space))
+                Jump();
         }
         else
             wallJumpCooldown += Time.deltaTime; 
+            
 
     }
 
     private void Jump()
-    {
-        body.velocity = new Vector2(body.velocity.x, speed);
-        anim.SetTrigger("jump");
+    {   if (isGrounded())
+        {
+            body.velocity = new Vector2(body.velocity.x, jumpPower);
+            anim.SetTrigger("jump");
+        }
+        else if (onWall() && !isGrounded())
+        {   if(horizontalInput == 0)
+            {
+                body.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * 6, 0); //(direção do player com a parede 
+                //*força com o que o player se afasta da parede, foça com o que player vai para cima)
+                transform.localScale = new Vector3(-Mathf.Sign(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+            else
+                body.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * 2, 4); //(direção do player com a parede 
+                //*força com o que o player se afasta da parede, foça com o que player vai para cima)
+            
+            wallJumpCooldown = 0;
+
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
