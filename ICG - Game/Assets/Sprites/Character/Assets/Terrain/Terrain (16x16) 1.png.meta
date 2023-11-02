@@ -328,9 +328,9 @@ TextureImporter:
       name: Terrain (16x16) 1_9
       rect:
         serializedVersion: 2
-        x: 272
+        x: 273
         y: 64
-        width: 80
+        width: 19
         height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
