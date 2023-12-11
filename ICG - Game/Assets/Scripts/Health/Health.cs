@@ -44,8 +44,6 @@ public class Health : MonoBehaviour
         {
             if(!dead)
             {
-                anim.SetTrigger("die");
-                
                 // player
                 if (GetComponent<PlayerMovement>() != null)
                     GetComponent<PlayerMovement>().enabled = false;
@@ -55,6 +53,10 @@ public class Health : MonoBehaviour
 
                 if (GetComponent<MeleeEnemy>() != null)
                     GetComponent<MeleeEnemy>().enabled = false;
+
+                
+                anim.SetBool("grounded", true);
+                anim.SetTrigger("die");
 
                 dead = true;
                 SoundManager.instance.PlaySound(deathSound);

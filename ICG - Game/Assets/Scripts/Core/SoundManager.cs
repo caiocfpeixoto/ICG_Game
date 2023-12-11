@@ -21,7 +21,7 @@ public class SoundManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }//destroy duplicate gameobjects
         else if (instance != null && instance != this)
-            destroy(gameObeject);
+            Destroy(gameObject);
     }
     
     public void PlaySound(AudioClip _sound)
