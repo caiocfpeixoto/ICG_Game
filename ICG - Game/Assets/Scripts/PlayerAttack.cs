@@ -7,7 +7,10 @@ public class PlayerAttack : MonoBehaviour
     private Animator anim;
     private PlayerMovement playerMovement;
     private float cooldownTimer = Mathf.Infinity;
-
+    public Transform attackPoint;
+    [Header ("Attack Range")]
+    public float attackRange;
+    public LayerMask enemyLayers;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -22,10 +25,30 @@ public class PlayerAttack : MonoBehaviour
             Attack();
         
         cooldownTimer += Time.deltaTime;
+
+
     }
     private void Attack()
     {   
         anim.SetTrigger("attack");
         cooldownTimer = 0;
+
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponent<Health>().TakeDamage(1);
+        }
+                
     }
+
+    private void OnDrawGizmos()
+    {
+        if(attackPoint == null)
+        {
+            return;
+        }
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
 }

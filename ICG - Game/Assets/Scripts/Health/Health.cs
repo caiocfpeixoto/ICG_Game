@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
     private SpriteRenderer spriteRend;
 
     [Header("Components")]
-    [SerializeField] private Behaviour[] components;
+    // [SerializeField] private Behaviour[] components;
     private bool invulnerable;
 
     private void Awake()
@@ -38,11 +38,17 @@ public class Health : MonoBehaviour
         {
             if(!dead)
             {
-                 anim.SetTrigger("die");
+                anim.SetTrigger("die");
+                
+                // player
+                if (GetComponent<PlayerMovement>() != null)
+                    GetComponent<PlayerMovement>().enabled = false;
+                // enemy
+                if (GetComponent<EnemyPatrol>() != null)
+                    GetComponent<EnemyPatrol>().enabled = false;
 
-                //Deactivate all attached component classes
-                foreach (Behaviour component in components)
-                    component.enabled = false;
+                if (GetComponent<MeleeEnemy>() != null)
+                    GetComponent<MeleeEnemy>().enabled = false;
 
                 dead = true;
             }
