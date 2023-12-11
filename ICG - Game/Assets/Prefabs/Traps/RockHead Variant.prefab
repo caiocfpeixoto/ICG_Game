@@ -52,6 +52,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7947357911048415337, guid: 72ab52d6f0fb2d64a963a49b088cc0d2, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7947357911048415337, guid: 72ab52d6f0fb2d64a963a49b088cc0d2, type: 3}
+      propertyPath: playerLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 8570018470248694829, guid: 72ab52d6f0fb2d64a963a49b088cc0d2, type: 3}
       propertyPath: m_Size.x
       value: 0.31368
@@ -90,9 +98,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8831969687404585574, guid: 72ab52d6f0fb2d64a963a49b088cc0d2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8197817448747705694}
-    - targetCorrespondingSourceObject: {fileID: 8831969687404585574, guid: 72ab52d6f0fb2d64a963a49b088cc0d2, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2562183214314738048}
   m_SourcePrefab: {fileID: 100100000, guid: 72ab52d6f0fb2d64a963a49b088cc0d2, type: 3}
 --- !u!1 &6541959820760744590 stripped
@@ -100,25 +105,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8831969687404585574, guid: 72ab52d6f0fb2d64a963a49b088cc0d2, type: 3}
   m_PrefabInstance: {fileID: 2330824363824521448}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8197817448747705694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6541959820760744590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5425b13030abde743896970d41ccd8bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 2
-  speed: 0.3
-  range: 3
-  checkDelay: 2
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!95 &2562183214314738048
 Animator:
   serializedVersion: 5

@@ -9,8 +9,19 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {   
-        instance = this;
+       
         source = GetComponent<AudioSource>();
+        // can create duplicate objects
+        // DontDestroyOnLoad(gameObject);
+
+        // keep this object even when we go to new scene
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }//destroy duplicate gameobjects
+        else if (instance != null && instance != this)
+            destroy(gameObeject);
     }
     
     public void PlaySound(AudioClip _sound)

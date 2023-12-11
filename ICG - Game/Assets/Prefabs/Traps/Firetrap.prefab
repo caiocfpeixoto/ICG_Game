@@ -147,6 +147,7 @@ MonoBehaviour:
   damage: 1
   activationDelay: 2
   activeTime: 3
+  trapSound: {fileID: 8300000, guid: 87547035970d33343a8d2a53a663f477, type: 3}
 --- !u!95 &7162286671331446302
 Animator:
   serializedVersion: 5

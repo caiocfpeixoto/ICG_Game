@@ -169,7 +169,8 @@ MonoBehaviour:
   startingHealth: 2
   iFramesDuration: 0
   numberOfFlashes: 0
-  components: []
+  deathSound: {fileID: 8300000, guid: 8eddccd2279f61f469716d0311492f0a, type: 3}
+  hurtSound: {fileID: 8300000, guid: 8b23b175a78d6b5458322e3a6c9905d0, type: 3}
 --- !u!114 &4180920226489832077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,3 +191,4 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
+  attackSound: {fileID: 8300000, guid: b885d78e80784e04eb58be673834a071, type: 3}

@@ -17,6 +17,11 @@ public class Health : MonoBehaviour
 
     [Header("Components")]
     // [SerializeField] private Behaviour[] components;
+
+    [Header("Sounds")]
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioClip hurtSound;
+
     private bool invulnerable;
 
     private void Awake()
@@ -34,6 +39,7 @@ public class Health : MonoBehaviour
         {
             anim.SetTrigger("hurt");
             StartCoroutine(Invulnerability());
+            SoundManager.instance.PlaySound(hurtSound);
         }else
         {
             if(!dead)
@@ -51,6 +57,7 @@ public class Health : MonoBehaviour
                     GetComponent<MeleeEnemy>().enabled = false;
 
                 dead = true;
+                SoundManager.instance.PlaySound(deathSound);
             }
         }
     }

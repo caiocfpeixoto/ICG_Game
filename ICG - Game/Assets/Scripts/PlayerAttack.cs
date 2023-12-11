@@ -11,6 +11,9 @@ public class PlayerAttack : MonoBehaviour
     [Header ("Attack Range")]
     public float attackRange;
     public LayerMask enemyLayers;
+     [Header("Attack Sound")]
+    [SerializeField] private AudioClip attackSound;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -30,8 +33,9 @@ public class PlayerAttack : MonoBehaviour
     }
     private void Attack()
     {   
-        anim.SetTrigger("attack");
         cooldownTimer = 0;
+        anim.SetTrigger("attack");
+        SoundManager.instance.PlaySound(attackSound);
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 

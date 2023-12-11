@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2641523765516092095}
   - component: {fileID: 8570018470248694829}
   - component: {fileID: 7882284674970285071}
+  - component: {fileID: 7947357911048415337}
   m_Layer: 0
   m_Name: Spikehead
   m_TagString: Untagged
@@ -158,3 +159,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &7947357911048415337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8831969687404585574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5425b13030abde743896970d41ccd8bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 2
+  speed: 3
+  range: 3
+  checkDelay: 2
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  impactSound: {fileID: 8300000, guid: 5092ebc44148f6c4d8a4c236fc8024be, type: 3}
