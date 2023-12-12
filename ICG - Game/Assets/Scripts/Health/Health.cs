@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
     private SpriteRenderer spriteRend;
 
     [Header("Components")]
-    // [SerializeField] private Behaviour[] components;
+    [SerializeField] private Behaviour[] components;
 
     [Header("Sounds")]
     [SerializeField] private AudioClip deathSound;
@@ -44,16 +44,9 @@ public class Health : MonoBehaviour
         {
             if(!dead)
             {
-                // player
-                if (GetComponent<PlayerMovement>() != null)
-                    GetComponent<PlayerMovement>().enabled = false;
-                // enemy
-                if (GetComponent<EnemyPatrol>() != null)
-                    GetComponent<EnemyPatrol>().enabled = false;
-
-                if (GetComponent<MeleeEnemy>() != null)
-                    GetComponent<MeleeEnemy>().enabled = false;
-
+                //Activate all attache component classes
+                foreach (Behaviour component in components)
+                    component.enabled = false;
                 
                 anim.SetBool("grounded", true);
                 anim.SetTrigger("die");
@@ -69,6 +62,21 @@ public class Health : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
     }
 
+    public void Respawn()
+    {
+        dead = false;
+        AddHealth(startingHealth);
+        anim.ResetTrigger("die");
+        anim.Play("idle_finn");
+        StartCoroutine(Invulnerability());
+
+        //Activate all attache component classes
+        foreach (Behaviour component in components)
+        {
+            component.enabled = true;
+        }
+    }
+
     private IEnumerator Invulnerability()
     {
         Physics2D.IgnoreLayerCollision(8, 9, true);
@@ -80,5 +88,10 @@ public class Health : MonoBehaviour
             yield return new WaitForSeconds(iFramesDuration/(numberOfFlashes * 3));
         }
         Physics2D.IgnoreLayerCollision(8, 9, false);
+    }
+
+    private void Deactivate()
+    {
+        gameObject.SetActive(false);
     }
 }
