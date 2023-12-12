@@ -5,24 +5,27 @@ using UnityEngine.UI;
 
 public class EfeitoParallax : MonoBehaviour
 {
-    [SerializeField] private Image fundo;
-    [SerializeField] private float velocidade;
-
-    private void Update()
+    private float length, startpos;
+    public float parallaxFactor;
+    public GameObject cam;
+ 
+    void Start()
     {
-        MoveFundo();
+        startpos = transform.position.x;
+        length = GetComponent<SpriteRenderer>().bounds.size.x;
     }
-
-    public void MoveFundo()
+ 
+    void Update()
     {
-        transform.position = new Vector3(transform.position.x - velocidade * Time.deltaTime * Input.GetAxisRaw("Horizontal"), 0, 0);
+        float temp     = cam.transform.position.x * (1 - parallaxFactor);
+        float distance = cam.transform.position.x * parallaxFactor;
+    
+        Vector3 newPosition = new Vector3(startpos + distance, transform.position.y, transform.position.z);
+    
+        transform.position = newPosition;
 
-        if(transform.localPosition.x >= fundo.preferredWidth)
-        {
-            transform.localPosition = new Vector3(transform.localPosition.x - fundo.preferredWidth * 2, 0, 0);            
-        } else if(transform.localPosition.x <= -fundo.preferredWidth)
-        {
-            transform.localPosition = new Vector3(transform.localPosition.x + fundo.preferredWidth * 2, 0, 0);
-        }
-    }
+        if (temp > startpos + (length / 2))    startpos += length;
+        else if (temp < startpos - (length / 2)) startpos -= length;
+    } 
+
 }
